@@ -126,8 +126,8 @@ spec:
             - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
                 valueFrom:
                     secretKeyRef:
-                        name: linkerd-trust-pem
-                        key: identity-trust-anchors-pem
+                        name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
+                        key: trust-anchors-pem
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
         livenessProbe:
