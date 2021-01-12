@@ -16,3 +16,19 @@ maintainers:
   - name: Linkerd authors
     email: cncf-linkerd-dev@lists.cncf.io
     url: https://linkerd.io/
+dependencies:
+  - name: partials
+    version: 0.1.0
+    repository: file://./partials
+  - name: prometheus
+    version: 0.1.0
+    repository: file://./add-ons/prometheus
+    condition: prometheus.enabled
+  - name: grafana
+    version: 0.1.0
+    repository: file://./add-ons/grafana
+    condition: grafana.enabled
+  - name: tracing
+    version: 0.1.0
+    repository: file://./add-ons/tracing
+    condition: tracing.enabled
