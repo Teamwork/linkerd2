@@ -123,11 +123,11 @@ spec:
         - -identity-scheme={{.Values.identity.issuer.scheme}}
         {{- include "partials.linkerd.trace" . | nindent 8 -}}
         env:
-            - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
-                valueFrom:
-                    secretKeyRef:
-                        name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
-                        key: trust-anchors-pem
+          - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
+            valueFrom:
+              secretKeyRef:
+                name: trust-anchors-pem
+                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
         livenessProbe:
