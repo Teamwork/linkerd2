@@ -74,7 +74,7 @@ env:
   value: /var/run/linkerd/identity/end-entity
 - name: LINKERD2_PROXY_IDENTITY_TRUST_ANCHORS
   value: |
-    $(LINKERD_IDENTITY_TRUST_ANCHORS_PEM)
+  {{b64enc $(LINKERD_IDENTITY_TRUST_ANCHORS_PEM)}} $(LINKERD_IDENTITY_TRUST_ANCHORS_PEM)  | trim | nindent 4 }}
 - name: LINKERD2_PROXY_IDENTITY_TOKEN_FILE
   value: /var/run/secrets/kubernetes.io/serviceaccount/token
 - name: LINKERD2_PROXY_IDENTITY_SVC_ADDR
