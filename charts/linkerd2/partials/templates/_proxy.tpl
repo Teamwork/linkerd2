@@ -1,10 +1,4 @@
 {{ define "partials.proxy" -}}
-env:
-- name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
-  valueFrom:
-    secretKeyRef:
-      name: trust-anchors-pem
-      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
 {{- if .Values.global.proxy.cores }}
 - name: LINKERD2_PROXY_CORES
   value: {{.Values.global.proxy.cores | quote}}
@@ -77,9 +71,11 @@ env:
 {{ else -}}
 - name: LINKERD2_PROXY_IDENTITY_DIR
   value: /var/run/linkerd/identity/end-entity
-- name: LINKERD2_PROXY_IDENTITY_TRUST_ANCHORS
-  value: |
-    $(LINKERD_IDENTITY_TRUST_ANCHORS_PEM)
+- name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
+  valueFrom:
+    secretKeyRef:
+      name: trust-anchors-pem
+      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
 - name: LINKERD2_PROXY_IDENTITY_TOKEN_FILE
   value: /var/run/secrets/kubernetes.io/serviceaccount/token
 - name: LINKERD2_PROXY_IDENTITY_SVC_ADDR
