@@ -4,7 +4,7 @@ env:
   valueFrom:
     secretKeyRef:
       name: trust-anchors-pem
-      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
+      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
 {{- if .Values.global.proxy.cores }}
 - name: LINKERD2_PROXY_CORES
   value: {{.Values.global.proxy.cores | quote}}
