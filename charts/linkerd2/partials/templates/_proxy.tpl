@@ -1,4 +1,5 @@
 {{ define "partials.proxy" -}}
+env:
 {{- if .Values.global.proxy.cores }}
 - name: LINKERD2_PROXY_CORES
   value: {{.Values.global.proxy.cores | quote}}
@@ -75,7 +76,7 @@
   valueFrom:
     secretKeyRef:
       name: trust-anchors-pem
-      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
+      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
 - name: LINKERD2_PROXY_IDENTITY_TOKEN_FILE
   value: /var/run/secrets/kubernetes.io/serviceaccount/token
 - name: LINKERD2_PROXY_IDENTITY_SVC_ADDR
