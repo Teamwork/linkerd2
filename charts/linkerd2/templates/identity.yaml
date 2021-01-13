@@ -5,24 +5,6 @@
 ###
 {{ if and (.Values.identity.issuer) (eq .Values.identity.issuer.scheme "linkerd.io/tls") -}}
 ---
-kind: Secret
-apiVersion: v1
-metadata:
-  name: linkerd-identity-issuer
-  namespace: {{.Values.global.namespace}}
-  labels:
-    {{.Values.global.controllerComponentLabel}}: identity
-    {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
-  annotations:
-    {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
-    {{- if .Values.identity.issuer.crtExpiryAnnotation}}
-    {{.Values.identity.issuer.crtExpiryAnnotation}}: {{required "Please provide the identity issuer certificate expiry date" .Values.identity.issuer.crtExpiry}}
-    {{- end}}
-data:
-  crt.pem: $(LINKERD_IDENTITY_ISSUER_CERT)
-  key.pem: $(LINKERD_IDENTITY_ISSUER_KEY)
-{{- end}}
----
 kind: Service
 apiVersion: v1
 metadata:
