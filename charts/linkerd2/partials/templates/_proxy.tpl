@@ -1,5 +1,10 @@
 {{ define "partials.proxy" -}}
 env:
+- name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
+  valueFrom:
+    secretKeyRef:
+      name: trust-anchors-pem
+      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
 {{- if .Values.global.proxy.cores }}
 - name: LINKERD2_PROXY_CORES
   value: {{.Values.global.proxy.cores | quote}}
