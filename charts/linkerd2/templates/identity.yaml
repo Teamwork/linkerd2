@@ -19,8 +19,8 @@ metadata:
     {{.Values.identity.issuer.crtExpiryAnnotation}}: {{required "Please provide the identity issuer certificate expiry date" .Values.identity.issuer.crtExpiry}}
     {{- end}}
 data:
-  crt.pem: {{b64enc (required "Please provide the identity issuer certificate" .Values.identity.issuer.tls.crtPEM | trim)}}
-  key.pem: {{b64enc (required "Please provide the identity issue private key" .Values.identity.issuer.tls.keyPEM | trim)}}
+  crt.pem: $(LINKERD_IDENTITY_ISSUER_CERT)
+  key.pem: $(LINKERD_IDENTITY_ISSUER_KEY)
 {{- end}}
 ---
 kind: Service
@@ -123,11 +123,21 @@ spec:
         - -identity-scheme={{.Values.identity.issuer.scheme}}
         {{- include "partials.linkerd.trace" . | nindent 8 -}}
         env:
+          - name: LINKERD_IDENTITY_ISSUER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: identity
+                key: "LINKERD_IDENTITY_ISSUER_KEY_BASE64"
+          - name: LINKERD_IDENTITY_ISSUER_CERT
+            valueFrom:
+              secretKeyRef:
+                name: identity
+                key: "LINKERD_IDENTITY_ISSUER_CERT_BASE64"
           - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
             valueFrom:
               secretKeyRef:
-                name: trust-anchors-pem
-                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
+                name: identity
+                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
         livenessProbe:

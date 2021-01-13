@@ -75,7 +75,7 @@ env:
 - name: LINKERD2_PROXY_IDENTITY_TRUST_ANCHORS
   valueFrom:
     secretKeyRef:
-      name: trust-anchors-pem
+      name: identity
       key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
 - name: LINKERD2_PROXY_IDENTITY_TOKEN_FILE
   value: /var/run/secrets/kubernetes.io/serviceaccount/token
