@@ -5,7 +5,7 @@
 # Values that are passed along to sub-charts
 global:
   # The kubernetes cluster domain.
-  clusterDomain: &cluster_domain cluster.local
+  clusterDomain: cluster.local
 
   # The cluster networks for which service discovery is performed. This should
   # include the pod network but need not include the node network.
@@ -14,14 +14,14 @@ global:
   # typical Kubernetes environments.
   clusterNetworks: "10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16"
 
-  imagePullPolicy: &image_pull_policy IfNotPresent
-  controllerLogLevel: &controller_log_level info
+  imagePullPolicy: IfNotPresent
+  controllerLogLevel: info
 
   # control plane trace configuration
   controlPlaneTracing: false
 
   # control plane version. See Proxy section for proxy version
-  linkerdVersion: &linkerd_version linkerdVersionValue
+  linkerdVersion: stable-2.9.1
 
   namespace: linkerd
 
@@ -37,7 +37,7 @@ global:
 
   identityTrustAnchorsPEM: |
 
-  identityTrustDomain: *cluster_domain
+  identityTrustDomain: cluster.local
 
   # url of existing prometheus
   prometheusUrl: ""
@@ -57,8 +57,8 @@ global:
     inboundConnectTimeout: 100ms
     image:
       name: ghcr.io/linkerd/proxy
-      pullPolicy: *image_pull_policy
-      version: *linkerd_version
+      pullPolicy: IfNotPresent
+      version: stable-2.9.1
     logLevel: warn,linkerd=info
     logFormat: plain
     ports:
@@ -99,7 +99,7 @@ global:
     ignoreOutboundPorts: "25,443,587,3306,11211"
     image:
       name: ghcr.io/linkerd/proxy-init
-      pullPolicy: *image_pull_policy
+      pullPolicy: IfNotPresent
       version: v1.3.6
     resources:
       cpu:
@@ -158,8 +158,8 @@ dashboard:
 debugContainer:
   image:
     name: ghcr.io/linkerd/debug
-    pullPolicy: *image_pull_policy
-    version: *linkerd_version
+    pullPolicy: IfNotPresent
+    version: stable-2.9.1
 
 # identity configuration
 identity:
