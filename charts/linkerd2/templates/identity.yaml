@@ -100,7 +100,7 @@ spec:
         - -identity-trust-domain={{.Values.global.identityTrustDomain}}
         - -identity-issuance-lifetime={{.Values.identity.issuer.issuanceLifetime}}
         - -identity-clock-skew-allowance={{.Values.identity.issuer.clockSkewAllowance}}
-        - -identity-trust-anchors-pem={{ "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrRENDQVRhZ0F3SUJBZ0lSQUtJcXZ5cVlxNytpYU5TOWNJNWZwREF3Q2dZSUtvWkl6ajBFQXdJd0pURWoKTUNFR0ExVUVBeE1hY205dmRDNXNhVzVyWlhKa0xtTnNkWE4wWlhJdWJHOWpZV3d3SUJjTk1qRXdNVEUwTWpBegpOVFExV2hnUE1qQTNNVEF4TURJeU1ETTFORFZhTUNVeEl6QWhCZ05WQkFNVEduSnZiM1F1YkdsdWEyVnlaQzVqCmJIVnpkR1Z5TG14dlkyRnNNRmt3RXdZSEtvWkl6ajBDQVFZSUtvWkl6ajBEQVFjRFFnQUVKRGxSU1FqbnRSencKNlIzTE1tOFpRcTZMTjVueFEvUVVWc0p5bDRvTHpLalF5QkozTVVWMzRRSWZXNnM5cTNPMDFYaStTWnd2MzZDOQpRNkJhZWRYMk42TkZNRU13RGdZRFZSMFBBUUgvQkFRREFnRUdNQklHQTFVZEV3RUIvd1FJTUFZQkFmOENBUUV3CkhRWURWUjBPQkJZRUZLS1IzR3JxZnkyb3FlQVVqcmpOWUxvT05JNEpNQW9HQ0NxR1NNNDlCQU1DQTBnQU1FVUMKSVFDMUkrL1pyUmhkTUZ4SVdNVXUzdWF4ZUZEbGtBUytDeVBGdkRCd25hWXBMUUlnY3Qrb2MxSjNEV1dIbkxwVApQdUJOT0NWV2ZmVUUraEs3VVEwVGMxZzZBTFk9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K" }}
+        - -identity-trust-anchors-pem=$(LINKERD_IDENTITY_TRUST_ANCHORS_CA_CERT_BASE64)
         - -identity-scheme={{.Values.identity.issuer.scheme}}
         {{- include "partials.linkerd.trace" . | nindent 8 -}}
         env:
