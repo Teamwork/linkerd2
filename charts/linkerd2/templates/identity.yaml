@@ -107,8 +107,8 @@ spec:
           - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
             valueFrom:
               secretKeyRef:
-                name: identity
-                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
+                name: linkerd-indentity-issuer
+                key: ca.crt
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
         livenessProbe:

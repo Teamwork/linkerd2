@@ -75,8 +75,8 @@ env:
 - name: LINKERD2_PROXY_IDENTITY_TRUST_ANCHORS
   valueFrom:
     secretKeyRef:
-      name: identity
-      key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
+      name: linkerd-indentity-issuer
+      key: ca.crt
 - name: LINKERD2_PROXY_IDENTITY_TOKEN_FILE
   value: /var/run/secrets/kubernetes.io/serviceaccount/token
 - name: LINKERD2_PROXY_IDENTITY_SVC_ADDR
