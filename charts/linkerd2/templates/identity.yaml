@@ -108,7 +108,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: identity
-                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
+                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
         livenessProbe:
