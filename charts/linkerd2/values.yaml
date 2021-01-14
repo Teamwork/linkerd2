@@ -35,8 +35,6 @@ global:
   # requires the linkerd-cni plugin to already be installed
   cniEnabled: false
 
-  identityTrustAnchorsPEM: |
-
   identityTrustDomain: cluster.local
 
   # url of existing prometheus
