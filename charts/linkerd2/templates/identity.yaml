@@ -107,7 +107,7 @@ spec:
           - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
             valueFrom:
               secretKeyRef:
-                name: linkerd-indentity-issuer
+                name: linkerd-identity-issuer
                 key: ca.crt
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
