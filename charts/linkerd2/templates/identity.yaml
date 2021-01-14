@@ -111,11 +111,11 @@ spec:
                 key: ca.crt
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
-        livenessProbe:
-          httpGet:
-            path: /ping
-            port: 9990
-          initialDelaySeconds: 10
+        #livenessProbe:
+        #  httpGet:
+        #    path: /ping
+        #    port: 9990
+        #  initialDelaySeconds: 10
         name: identity
         ports:
         - containerPort: 8080
