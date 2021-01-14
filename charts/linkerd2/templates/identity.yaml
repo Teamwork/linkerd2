@@ -104,21 +104,11 @@ spec:
         - -identity-scheme={{.Values.identity.issuer.scheme}}
         {{- include "partials.linkerd.trace" . | nindent 8 -}}
         env:
-          - name: LINKERD_IDENTITY_ISSUER_KEY
-            valueFrom:
-              secretKeyRef:
-                name: identity
-                key: "LINKERD_IDENTITY_ISSUER_KEY"
-          - name: LINKERD_IDENTITY_ISSUER_CERT
-            valueFrom:
-              secretKeyRef:
-                name: identity
-                key: "LINKERD_IDENTITY_ISSUER_CERT"
           - name: LINKERD_IDENTITY_TRUST_ANCHORS_PEM
             valueFrom:
               secretKeyRef:
                 name: identity
-                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM_BASE64"
+                key: "LINKERD_IDENTITY_TRUST_ANCHORS_PEM"
         image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
         imagePullPolicy: {{.Values.global.imagePullPolicy}}
         livenessProbe:
