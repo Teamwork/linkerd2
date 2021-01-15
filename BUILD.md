@@ -402,7 +402,7 @@ The Linkerd control plane chart is located in the
 [`charts/linkerd2`](charts/linkerd2) folder. The [`charts/patch`](charts/patch)
 chart consists of the Linkerd proxy specification, which is used by the proxy
 injector to inject the proxy container. Both charts depend on the partials
-subchart which can be found in the [`charts/partials`](partials) folder.
+subchart which can be found in the [`charts/partials`](charts/linkerd2/partials) folder.
 
 Note that the `charts/linkerd2/values.yaml` file contains a placeholder
 `linkerdVersionValue` that you need to replace with an appropriate string (like
@@ -427,7 +427,7 @@ generate your own certificates to use the chart, as explained
 
 Whenever you make changes to the files under
 [`charts/linkerd2/templates`](charts/linkerd2/templates) or its dependency
-[`charts/partials`](partials), make sure to run
+[`charts/partials`](charts/linkerd2/partials), make sure to run
 [`bin/helm-build`](bin/helm-build) which will refresh the dependencies and lint
 the templates.
 
