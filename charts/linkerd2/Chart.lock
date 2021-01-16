@@ -2,6 +2,9 @@ dependencies:
 - name: partials
   repository: file://./partials
   version: 0.1.0
+- name: patch
+  repository: file://./patch
+  version: 0.1.0
 - name: prometheus
   repository: file://./add-ons/prometheus
   version: 0.1.0
@@ -11,5 +14,5 @@ dependencies:
 - name: tracing
   repository: file://./add-ons/tracing
   version: 0.1.0
-digest: sha256:e052ed011549e02311b64dc4b6e18de14a2c8004aade23c73f638499b436ec4b
-generated: "2021-01-12T19:21:10.838226Z"
+digest: sha256:6223a9c07a0b8d68cb8f8955f1a117cc354addb956a29bb370b9f0e8e96e9eeb
+generated: "2021-01-16T21:55:38.138284Z"
